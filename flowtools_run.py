@@ -18,11 +18,11 @@ skip = 2
 count = 0
 
 #reading measurements
-f_1ab = open("*\Data_Test_1AB.txt", "r")
+f_1ab = open(".\data_for_report\\Data_Test_1AB.txt", "r")
 for x in f_1ab:
     if count >= skip:
         x = x.strip()
-        values = x.split("\t")
+        values = x.split()
         x_loc.append(float(values[0]))
         ppt.append(float(values[1].strip()))
     count += 1
@@ -57,10 +57,16 @@ for i in areas_sup:
     out = flowtools.flowisentropic2(gamma,i,'sup')
     Mach.append(out[0])
 
-print(Mach)
-plt.plot(x_loc,ppt)
+#print(Mach)
+plt.plot(x_loc,ppt,marker="o", label="Measured pressure ratios")
+plt.plot(areas_loc,)
+plt.xlabel("x [mm]")
+plt.ylabel("p/pt [-]")
 #plt.plot(areas_loc,areas)
 #plt.plot(areas_loc,Mach)
+plt.xlim(40, 200)
+plt.ylim(0,1)
+plt.legend()
 plt.show()
 
 #out2 = flowtools.flownormalshock2(gamma,2.5,'mach')
