@@ -18,8 +18,8 @@ skip = 2
 count = 0
 
 #reading measurements
-f1 = open("testfile.txt", "r")
-for x in f1:
+f_1ab = open("*\Data_Test_1AB.txt", "r")
+for x in f_1ab:
     if count >= skip:
         x = x.strip()
         values = x.split("\t")
@@ -59,12 +59,12 @@ for i in areas_sup:
 
 print(Mach)
 plt.plot(x_loc,ppt)
-plt.plot(areas_loc,areas)
-plt.plot(areas_loc,Mach)
+#plt.plot(areas_loc,areas)
+#plt.plot(areas_loc,Mach)
 plt.show()
 
 #out2 = flowtools.flownormalshock2(gamma,2.5,'mach')
 #print(out2)
 
-f1.close()
+f_1ab.close()
 f_area.close()
