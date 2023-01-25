@@ -52,27 +52,24 @@ gamma = 1.4
 
 #theoretical mach
 a_ref_ratio = flowtools.flowisentropic2(gamma,ppt[1],'pres')[4]
-at_a = areas[1]
-at_aref = a_ref_ratio*at_a
+at_a = 1/areas[1] #ax over at
+at_aref = a_ref_ratio*at_a #at over a star
 
 input = at_aref*areas_sub
 for i in areas_sub: #A/At not n A/A*
-    a_ref_ratio = flowtools.flowisentropic2(gamma,i,'pres')[4]
+    a_ref_ratio = flowtools.flowisentropic2(gamma,i,'sub')[4]
     out = flowtools.flowisentropic2(gamma,i,'sub')
     Mach.append(out[0])
 
 input = at_aref*areas_sup
+#theoretical mach
 for i in areas_sup:
-    out = flowtools.flowisentropic2(gamma,i,'sup')
+    out = flowtools.flowisentropic2(gamma,i,'sub')
     Mach.append(out[0])
 
 #theoretical pressure
-for i in areas_sub:
-    out = flowtools.flowisentropic2(gamma,i,'sub')
-    pp0.append(out[2])
-
-for i in areas_sup:
-    out = flowtools.flowisentropic2(gamma,i,'sup')
+for i in Mach:
+    out = flowtools.flowisentropic2(gamma,i,'mach')
     pp0.append(out[2])
 
 m = []
@@ -102,8 +99,8 @@ plt.legend()
 
 ############
 plt.subplot(313)
-plt.plot(areas_loc,Mach,marker="o", label="Theoretical Mach number")
 plt.plot(x_loc, m, marker="o", label="Measured Mach number")
+plt.plot(areas_loc,Mach,marker="o", label="Theoretical Mach number")
 plt.xlabel("x [mm]")
 plt.ylabel("M [-]")
 plt.xlim(40, 200)
