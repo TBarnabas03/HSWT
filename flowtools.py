@@ -120,7 +120,7 @@ def flowisentropic2(GAMMA, VAR, MTYPE):
         # Temperature ratio solution.
         M = sqrt((2/(GAMMA-1))*(VAR**(-1)-1));
     else:
-        error('Unsupported mode.');
+        print('Unsupported mode.');
 
     # Organize outputs.
     MACH = M;
@@ -193,11 +193,11 @@ def flownormalshock2(GAMMA, VAR, MTYPE):
     if MTYPE == 'mach':
         MACH = VAR;
     else:
-        error('Unsupported mode.')
+        print('Unsupported mode.')
 
     # Make sure upstream Mach number at least 1.
     if (MACH < 1):
-        error('Upstream Mach number less than 1.');
+        print('Upstream Mach number less than 1.');
 
     # Constants.
     cp = 1.01 * 1000;
