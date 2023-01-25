@@ -49,7 +49,7 @@ ppt = np.array(ppt)
 
 gamma = 1.4
 
-for i in areas_sub:
+for i in areas_sub: #A/At not n A/A*
     out = flowtools.flowisentropic2(gamma,i,'sub')
     Mach.append(out[0])
 
@@ -59,11 +59,11 @@ for i in areas_sup:
 
 for i in areas_sub:
     out = flowtools.flowisentropic2(gamma,i,'sub')
-    Mach.append(out[0])
+    pp0.append(out[2])
 
 for i in areas_sup:
     out = flowtools.flowisentropic2(gamma,i,'sup')
-    Mach.append(out[0])
+    pp0.append(out[2])
 
 #print(Mach)
 plt.subplot(311)
