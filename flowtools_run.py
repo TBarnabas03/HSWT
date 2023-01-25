@@ -57,16 +57,39 @@ for i in areas_sup:
     out = flowtools.flowisentropic2(gamma,i,'sup')
     Mach.append(out[0])
 
+for i in areas_sub:
+    out = flowtools.flowisentropic2(gamma,i,'sub')
+    Mach.append(out[0])
+
+for i in areas_sup:
+    out = flowtools.flowisentropic2(gamma,i,'sup')
+    Mach.append(out[0])
+
 #print(Mach)
+plt.subplot(311)
+plt.plot(areas_loc,areas,marker="o", label="Area to throat ratios")
+plt.xlabel("x [mm]")
+plt.ylabel("A/At [-]")
+plt.xlim(40, 200)
+plt.ylim(0,2.5)
+plt.legend()
+
+plt.subplot(312)
 plt.plot(x_loc,ppt,marker="o", label="Measured pressure ratios")
-plt.plot(areas_loc,)
 plt.xlabel("x [mm]")
 plt.ylabel("p/pt [-]")
-#plt.plot(areas_loc,areas)
-#plt.plot(areas_loc,Mach)
 plt.xlim(40, 200)
 plt.ylim(0,1)
 plt.legend()
+
+plt.subplot(313)
+plt.plot(areas_loc,Mach,marker="o", label="Theoretical Mach number")
+plt.xlabel("x [mm]")
+plt.ylabel("M [-]")
+plt.xlim(40, 200)
+plt.ylim(0,2.5)
+plt.legend()
+
 plt.show()
 
 #out2 = flowtools.flownormalshock2(gamma,2.5,'mach')
